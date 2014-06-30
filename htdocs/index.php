@@ -36,9 +36,6 @@
 	include_once CONFIG_DIR."routing.php";
 	include_once LIBS_DIR."autoload.php";
 
-	$autoLoader = new AutoLoader();
-	$autoLoader->registerDir(VENDOR_DIR);
-	$autoLoader->register();
 
 	//execute controller
 	$_GET = array_merge($_GET,Routes::getRoute($_SERVER["REQUEST_URI"]));
