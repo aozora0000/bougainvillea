@@ -12,13 +12,13 @@
 	define("CTRL_DIR",		APPS_DIR."controller/");
 	define("CONFIG_DIR",	APPS_DIR."config/");
 	define("VALIDATE_DIR",	APPS_DIR."validate/");
+	define("VENDOR_DIR",	APPS_DIR."vendor");
 
 	//Smarty Dir Config
 	define("SMARTY_DIR",LIBS_DIR."smarty/");
 	define("SMARTY_CONPILE_DIR",APPS_DIR."tpl_c/");
 	define("SMARTY_TEMPLATE_DIR",APPS_DIR."templates/");
 
-	//Include Script
 	include_once LIBS_DIR."bootstrap.php";
 	include_once SMARTY_DIR."Smarty.class.php";
 	include_once LIBS_DIR."controller.php";
@@ -34,6 +34,11 @@
 	include_once LIBS_DIR."url.php";
 	include_once LIBS_DIR."route.php";
 	include_once CONFIG_DIR."routing.php";
+	include_once LIBS_DIR."autoload.php";
+
+	$autoLoader = new AutoLoader();
+	$autoLoader->registerDir(VENDOR_DIR);
+	$autoLoader->register();
 
 	//execute controller
 	$_GET = array_merge($_GET,Routes::getRoute($_SERVER["REQUEST_URI"]));
